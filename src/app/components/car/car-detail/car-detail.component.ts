@@ -16,7 +16,7 @@ export class CarDetailComponent implements OnInit {
    // @ts-ignore
    carDetail: CarDetail;
    carImages: CarImage[] = [];
-   imageBaseUrl = "https://localhost:44371/";
+   imageBaseUrl = "https://localhost:44310/";
 
    constructor(
       private carService: CarService,
@@ -36,7 +36,7 @@ export class CarDetailComponent implements OnInit {
 
    getCarById(id: number) {
       this.carService.getCarById(id).subscribe((response) => {
-         this.carDetail = response.data;
+         this.carDetail = response.data[0];
       });
    }
 

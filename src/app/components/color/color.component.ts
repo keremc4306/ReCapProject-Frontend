@@ -10,10 +10,10 @@ import { ColorService } from '../../services/color.service';
 })
 export class ColorComponent implements OnInit {
 
-   title: string = 'Renkler';
    listAllBrandCss: string = 'text-start list-group-item';
    colors: Color[] = [];
    currentColorId: number = 0;
+   filterText = ""
 
    constructor(private colorService: ColorService, private rooter:Router, private activatedRoute:ActivatedRoute) {
    }
@@ -45,6 +45,7 @@ export class ColorComponent implements OnInit {
    setCurrentColor(colorId: number) {
       this.currentColorId = colorId;
       this.rooter.navigate(["/cars/color/" + colorId])
+      this.filterText = ''
    }
 
    getCurrentColorClass(colorId: number): string {

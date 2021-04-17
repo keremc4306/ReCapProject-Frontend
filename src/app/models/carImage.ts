@@ -3,5 +3,4 @@ export interface CarImage {
     carId: number
     imagePath: string
     data: Date
-    image: string
 }

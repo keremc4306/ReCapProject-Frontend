@@ -1,14 +1,22 @@
-<table class="table table-hover table-striped mt-4 border">
-   <thead>
-   <tr>
-     <th class="text-center" style="width: 50px">#</th>
-     <th>Marka</th>
-   </tr>
-   </thead>
-   <tbody>
-   <tr *ngFor="let brand of brands">
-     <th class="text-center">{{ brand.id }}</th>
-     <td>{{ brand.name }}</td>
-   </tr>
-   </tbody>
- </table>
+<div class="row">
+   <div class="col-md-12">
+
+      <input type="text" [(ngModel)]="filterText" class="form-control rounded-0 mb-3"
+             placeholder="Marka Ara..." autocomplete="off" >
+
+      <div class="list-group rounded-0">
+         <div class="list-group-item fw-bold" style="background-color: #DDD">
+            <i class="bi-card-list"></i>
+         </div>
+         <button routerLink="/brands" (click)="resetCurrentBrandId()" class="{{ listAllBrandCss }}"
+                 style="background-color: #EEE">
+            Tümünü Listele
+         </button>
+
+         <a *ngFor="let brand of brands | brandFilter: filterText" routerLink="/cars/{{ brand.id }}"
+            [class]="getCurrentBrandClass(brand.id)" (click)="setCurrentBrand(brand.id)">
+            {{ brand.name }}
+         </a>
+      </div>
+   </div>
+</div>
