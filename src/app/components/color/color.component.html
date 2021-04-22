@@ -7,12 +7,12 @@
       <div class="list-group-item fw-bold" style="background-color: #DDD">
          <i class="bi-card-list"></i>
       </div>
-      <button routerLink="/colors" (click)="resetCurrentColor()" class="{{ listAllBrandCss }}"
+      <button routerLink="/cars/filter/0/0" (click)="resetCurrentColor()" class="{{ listAllBrandCss }}"
               style="background-color: #EEE">
         Tümünü Listele
       </button>
 
-      <button *ngFor="let color of colors | colorFilter: filterText" routerLink="/cars/color/{{ color.id }}"
+      <button *ngFor="let color of colors | colorFilter: filterText" routerLink="/cars/filter/0/{{ color.id }}"
               (click)="setCurrentColor(color.id)" [class]="getCurrentColorClass(color.id)">
          {{ color.name }}
       </button>

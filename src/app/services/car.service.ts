@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ListResponseModel } from '../models/listResponseModel';
 import { CarDetail } from '../models/carDetail';
+import { CarFilter } from '../models/carFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,11 @@ export class CarService {
 
   getCarsByColorId(id: number): Observable<ListResponseModel<CarDetail>> {
     let newPath=this.apiUrl + 'getbycolor?colorId=' + id;
+    return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
+  }
+
+  getCarsByFilter(carFilter: CarFilter): Observable<ListResponseModel<CarDetail>> {
+    let newPath=this.apiUrl + 'getbyfilter?colorId=' + carFilter.colorId + '&brandId=' + carFilter.brandId;
     return this.httpClient.get<ListResponseModel<CarDetail>>(newPath);
   }
 }

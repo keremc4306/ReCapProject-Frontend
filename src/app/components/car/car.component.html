@@ -11,15 +11,17 @@
          <th>Renk</th>
          <th>Model Yılı</th>
          <th>Günlük Ücret</th>
+         <th>Detay</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let car of carDetails | carFilter: filterText" routerLink="/cars/detail/{{ car.id }}">
          <th class="text-center">{{ car.id }}</th>
-         <td>{{ car.brandName }} {{ car.description }}</td>
+         <td>{{ car.brandName }}</td>
          <td>{{ car.colorName }}</td>
          <td>{{ car.modelYear }}</td>
-         <td>{{ car.dailyPrice }}</td>
+         <td>{{ car.dailyPrice }} ₺</td>
+         <td>{{ car.description }}</td>
       </tr>
       </tbody>
    </table>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from '../../services/car.service';
 import { CarDetail } from '../../models/carDetail';
 import { ActivatedRoute } from '@angular/router';
+import { CarFilterComponent } from './car-filter/car-filter.component';
+import { CarFilter } from 'src/app/models/carFilter';
 
 @Component({
    selector: 'app-car',
@@ -19,7 +21,15 @@ export class CarComponent implements OnInit {
    }
 
    ngOnInit(): void {
-      this.getCarsByFiltered();
+      this.activatedRoute.params.subscribe(params => {
+         if (params['brandId']) {
+            let carFilter = {brandId: params['brandId'], colorId: params['colorId']}
+            this.getCarsByFiltered(carFilter) 
+         }
+         else {
+            this.getCars();
+         }
+      })
    }
 
    getCars() {
@@ -48,17 +58,9 @@ export class CarComponent implements OnInit {
       });
    }
 
-   getCarsByFiltered() {
-      this.activatedRoute.params.subscribe(param => {
-         if (param['brandId'] > 0 && param['colorId'] == 0) {
-            return this.getCarsByBrandId(param['brandId']);
-         } else if (param['colorId'] > 0 && param['brandId'] == 0) {
-            return this.getCarsByColorId(param['colorId']);
-         } else if (param['brandId'] > 0 && param['colorId'] > 0) {
-            return this.getCarsByBrandIdAndColorId(param['brandId'], param['colorId']);
-         }
-
-         return this.getCars();
-      });
+   getCarsByFiltered(carFilter: CarFilter) {
+      this.carService.getCarsByFilter(carFilter).subscribe(response => {
+         this.carDetails = response.data;
+      })
    }
 }

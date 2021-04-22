@@ -8,12 +8,12 @@
          <div class="list-group-item fw-bold" style="background-color: #DDD">
             <i class="bi-card-list"></i>
          </div>
-         <button routerLink="/brands" (click)="resetCurrentBrandId()" class="{{ listAllBrandCss }}"
+         <button routerLink="/cars/filter/0/0" (click)="resetCurrentBrandId()" class="{{ listAllBrandCss }}"
                  style="background-color: #EEE">
             Tümünü Listele
          </button>
 
-         <a *ngFor="let brand of brands | brandFilter: filterText" routerLink="/cars/{{ brand.id }}"
+         <a *ngFor="let brand of brands | brandFilter: filterText" routerLink="/cars/filter/{{ brand.id }}/0"
             [class]="getCurrentBrandClass(brand.id)" (click)="setCurrentBrand(brand.id)">
             {{ brand.name }}
          </a>
