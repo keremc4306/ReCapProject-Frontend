@@ -17,6 +17,8 @@ import { BrandFilterPipe } from './pipes/brand-filter.pipe';
 import { CarFilterPipe } from './pipes/car-filter.pipe';
 import { ColorFilterPipe } from './pipes/color-filter.pipe';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
+import { BasketItemsComponent } from './components/basket-items/basket-items.component';
+import {CardModule} from 'ngx-card';
 
 
 @NgModule({
@@ -33,13 +35,15 @@ import { CarFilterComponent } from './components/car/car-filter/car-filter.compo
     BrandFilterPipe,
     CarFilterPipe,
     ColorFilterPipe,
-    CarFilterComponent
+    CarFilterComponent,
+    BasketItemsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

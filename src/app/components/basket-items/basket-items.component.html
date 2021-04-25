@@ -1,0 +1,51 @@
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="list-group rounded-0">
+            <div class="list-group-item fw-bold" style="background-color: #DDD">
+               <i class="bi-card-list"></i>
+            </div>
+            <button routerLink="/cars/filter/0/0" style="background-color: #EEE" class="text-start list-group-item">
+               Kart Bilgilerinizi Giriniz
+            </button>
+            <form card
+            #cardForm="ngForm"
+            container=".card-container"
+            [card-width]="350"
+            [messages]="messages"
+            [placeholders]="placeholders"
+            [masks]="masks"
+            [formatting]="false"
+            [debug]="true">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Kart Numarası</label>
+                <input type="text" class="form-control" name="number"  (input)="onCardNumberChange()" (keypress)="numberOnly($event)"
+                id="inputccNo" placeholder="Kart No" card-number [(ngModel)]="cardData.ccNumber" maxlength="19"> 
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Adınız:</label>
+                <input type="text" class="form-control" name="first-name" 
+                id="inputfName" placeholder="Adınız" card-name [(ngModel)]="cardData.firstName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Soyadınız:</label>
+                <input type="text" class="form-control" name="last-name" 
+                id="inputlName" placeholder="Soyadınız" card-name [(ngModel)]="cardData.lastName">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Son Kullanım Tarihi:</label>
+                <input type="text" class="form-control" name="expiry" 
+                id="expiry" placeholder="expiry" card-expiry [(ngModel)]="cardData.validDate">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Güvenlik Numarası:</label>
+                <input type="text" class="form-control" name="cvc" 
+                id="cvc" placeholder="cvc" card-cvc [(ngModel)]="cardData.cvc">
+            </div>
+            <button class="btn btn-primary mt-2" type="submit" (click)="onCardFormClick()">Kaydet</button>
+            </form>
+         </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card-container mt-4"></div>
+    </div>
+</div>
