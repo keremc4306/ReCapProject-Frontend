@@ -1,18 +1,17 @@
-<div class="col-md-12">
+<input type="text" [(ngModel)]="filterText" class="form-control rounded-0 mt-4 mb-3" placeholder="Renk Ara..."
+   autocomplete="off">
 
-   <input type="text" [(ngModel)]="filterText" class="form-control rounded-0 mb-3"
-          placeholder="Renk Ara..." autocomplete="off" >
+<div class="list-group rounded-0">
+   <div class="list-group-item fw-bold" style="background-color: #DDD">
+      <i class="bi-card-list"></i>
+   </div>
+   <button routerLink="/cars/filter/0/0" (click)="resetCurrentColor()" class="{{ listAllBrandCss }}"
+      style="background-color: #EEE">
+      Tümünü Listele
+   </button>
 
-   <div class="list-group rounded-0">
-      <div class="list-group-item fw-bold" style="background-color: #DDD">
-         <i class="bi-card-list"></i>
-      </div>
-      <button routerLink="/cars/filter/0/0" (click)="resetCurrentColor()" class="{{ listAllBrandCss }}"
-              style="background-color: #EEE">
-        Tümünü Listele
-      </button>
-
-      <button *ngFor="let color of colors | colorFilter: filterText" routerLink="/cars/filter/0/{{ color.id }}"
-              (click)="setCurrentColor(color.id)" [class]="getCurrentColorClass(color.id)">
-         {{ color.name }}
-      </button>
+   <button *ngFor="let color of colors | colorFilter: filterText" routerLink="/cars/filter/0/{{ color.id }}"
+      (click)="setCurrentColor(color.id)" [class]="getCurrentColorClass(color.id)">
+      {{ color.name }}
+   </button>
+</div>

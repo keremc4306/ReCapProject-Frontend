@@ -9,16 +9,21 @@ import { CarDetailComponent } from './components/car/car-detail/car-detail.compo
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 import { BasketItemsComponent } from './components/basket-items/basket-items.component';
 
+
 const routes: Routes = [
-   //{ path: '', component: CarComponent},
-   { path: '', component: BasketItemsComponent},
+   { path: 'cars', component: CarComponent },
    { path: 'rentals', component: RentalComponent },
    { path: 'customers', component: CustomerComponent },
-   { path: 'cars', component: CarFilterComponent },
    { path: 'cars/filter/:brandId/:colorId', component: CarComponent },
    { path: 'cars/detail/:carId', component: CarDetailComponent },
    { path: 'brands', component: BrandComponent },
-   { path: 'colors', component: ColorComponent }
+   { path: 'colors', component: ColorComponent },
+   { path: 'cars/payment', component: BasketItemsComponent },
+
+
+
+
+   {path: '**', redirectTo: '/cars', pathMatch: 'full'}
 ];
 
 @NgModule({

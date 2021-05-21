@@ -15,8 +15,10 @@ export class CarDetailComponent implements OnInit {
 
    // @ts-ignore
    carDetail: CarDetail;
-   carImages: CarImage[] = [];
+   // carImages: CarImage[]; // slider kullanılacaksa aç
+   carImage: CarImage; // slider kullanılacaksa kapat
    imageBaseUrl = "https://localhost:44310/";
+   
 
    constructor(
       private carService: CarService,
@@ -27,29 +29,28 @@ export class CarDetailComponent implements OnInit {
 
    ngOnInit(): void {
       this.activatedRoute.params.subscribe((params) => {
-         if (params['carId']) {
             this.getPhotosByCarId(params['carId']);
             this.getCarById(params['carId']);
-         }
       });
    }
 
    getCarById(id: number) {
       this.carService.getCarById(id).subscribe((response) => {
-         this.carDetail = response.data[0];
+         this.carDetail = response.data; // slider kullanılacaksa sonuna s koy değişkenin
       });
    }
 
    getPhotosByCarId(carId: number) {
       this.carImageService.getPhotosByCarId(carId).subscribe((response) => {
-         this.carImages = response.data;
+         this.carImage = response.data[0];
       });
    }
 
-   getCurrentSliderImageClass(sliderImage: CarImage): string{
-      if (this.carImages[0] === sliderImage)
-         return 'carousel-item active'
+   // Slider kullanılacaksa burayı aç
+   // getCurrentSliderImageClass(sliderImage: CarImage): string{
+   //    if (this.carImages[0] === sliderImage)
+   //       return 'carousel-item active'
 
-      return 'carousel-item'
-   }
+   //    return 'carousel-item'
+   // }
 }

@@ -1,0 +1,36 @@
+<form [formGroup]="addRentCarForm" (ngSubmit)="checkCarRentable()">
+   <div class="row">
+      <hr/>
+      <div *ngIf="locationDetails" class="col-lg-12 mb-3">
+         <label for="location"><b>ALIŞ & DÖNÜŞ</b></label>
+         <select id="location" class="form-select rounded-0" formControlName="locationId">
+            <option value="">- - Lokasyon Seçiniz - -</option>
+      
+            <option *ngFor="let location of locationDetails" [ngValue]="location.id">
+               {{ location.name }}
+            </option>
+         </select>
+      </div>
+      <div class="col-lg-6">
+         <div class="form-floating mb-3">
+            <input type="datetime-local" class="form-control" id="rentDate" formControlName="rentDate"
+               placeholder="rentDate">
+            <label for="rentDate">Kiralama Tarihi</label>
+         </div>
+      </div>
+
+      <div class="col-lg-6">
+         <div class="form-floating">
+            <input type="datetime-local" class="form-control" id="returnDate" formControlName="returnDate"
+               placeholder="returnDate">
+            <label for="returnDate">Dönüş Tarihi</label>
+         </div>
+      </div>
+   </div>
+
+   <div class="text-end mt-2 mb-2">
+      <button *ngIf="carId" class="btn btn-sm btn-primary" [disabled]="addRentCarForm.invalid">
+         <i class="bi-credit-card-fill me-1"></i> Kirala
+      </button>
+   </div>
+</form>
